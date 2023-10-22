@@ -1,3 +1,90 @@
-.semaforo1{
-    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    background: linear-gradient(rgb(255, 255, 255), rgba(179, 179, 179, 0.507));
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.semaforoizq {
+    position: relative; 
+    z-index: 1;
+}
+
+.semaforoder {
+    position: relative; 
+    z-index: 1;
+}
+
+.luzRoja  {
+    position: absolute; 
+    height: 130px;
+    width: 130px;
+    background: rgb(48, 48, 48);
+    border-radius: 100px;
+    top: 11.9%;
+    left: 36.2%;
+    z-index: 2;
+}
+
+.luzAmarilla {
+    position: absolute; 
+    height: 130px;
+    width: 130px;
+    background: rgb(48, 48, 48);
+    border-radius: 100px;
+    top: 41.2%;
+    left: 36.2%;
+    z-index: 2;
+}
+
+.luzVerde {
+    position: absolute; 
+    height: 130px;
+    width: 130px;
+    background: rgb(48, 48, 48);
+    border-radius: 100px;
+    top: 70.7%;
+    left: 36.2%;
+    z-index: 2;
+}
+
+.luzRoja1  {
+    position: absolute; 
+    height: 130px;
+    width: 130px;
+    background: rgb(48, 48, 48);
+    border-radius: 100px;
+    top: 11.9%;
+    left: 36.2%;
+    z-index: 2;
+}
+
+.luzAmarilla1 {
+    position: absolute; 
+    height: 130px;
+    width: 130px;
+    background: rgb(48, 48, 48);
+    border-radius: 100px;
+    top: 41.2%;
+    left: 36.2%;
+    z-index: 2;
+}
+
+.luzVerde1 {
+    position: absolute; 
+    height: 130px;
+    width: 130px;
+    background: rgb(48, 48, 48);
+    border-radius: 100px;
+    top: 70.7%;
+    left: 36.2%;
+    z-index: 2;
+}
+
