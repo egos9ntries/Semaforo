@@ -4,3 +4,4 @@
 Integrantes:
 Aarón Murúa
 Lucía Pigliacampi
+Kevin Rodríguez
