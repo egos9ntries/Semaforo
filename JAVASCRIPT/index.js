@@ -19,6 +19,7 @@ let cambio = true;
 botonEncendido.addEventListener("click", () => {
     encendido = !encendido;
     if (encendido) {
+        botonEncendido.textContent = "Apagar";
         luzRoja.style.backgroundImage = "radial-gradient(circle, #ff0000, #800000)";
         luzRoja.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.7)";
 
@@ -26,6 +27,7 @@ botonEncendido.addEventListener("click", () => {
         luzVerde1.style.boxShadow = "0 0 10px rgba(0, 255, 0, 0.7)";
     }
     else {
+        botonEncendido.textContent = "Encender"
             luzRoja.style.removeProperty("Background");
             luzRoja.style.boxShadow = "0px 0px 5px 5px #000000";
             luzVerde.style.removeProperty("Background");
