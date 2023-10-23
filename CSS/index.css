@@ -10,6 +10,8 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .semaforoizq {
@@ -66,7 +68,7 @@ body {
     box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 11.9%;
-    left: 35.2%;
+    left: 35.8%;
     z-index: 2;
 }
 
@@ -78,7 +80,7 @@ body {
     box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 41.2%;
-    left: 35.2%;
+    left: 35.8%;
     z-index: 2;
 }
 
@@ -90,7 +92,7 @@ body {
     box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 70.7%;
-    left: 35.2%;
+    left: 35.8%;
     z-index: 2;
 }
 
