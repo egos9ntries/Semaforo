@@ -9,16 +9,19 @@
 </head>
 <body>
         <div class="semaforoizq"><img src="../Semaforo.png" alt="">
-            <div class="luzRoja"></div>
-            <div class="luzAmarilla"></div>
-            <div class="luzVerde"></div>
+            <div class="luzRoja" id="luzRoja"></div>
+            <div class="luzAmarilla" id="luzAmarilla"></div>
+            <div class="luzVerde" id="luzVerde"></div>
         </div>
-        <div class="botoncambio"></div>
+        <button type="button" id="botonEncendido">Prender/Apagar</button>
+        <button type="button" id="botonCambio">Cambio</button>
+        <button type="button" id="botonIntermitente">Intermitente</button>
         <div class="semaforoder"><img src="../Semaforo.png" alt="">
-            <div class="luzRoja1"></div>
-            <div class="luzAmarilla1"></div>
-            <div class="luzVerde1"></div>
+            <div class="luzRoja1" id="luzRoja1"></div>
+            <div class="luzAmarilla1" id="luzAmarilla1"></div>
+            <div class="luzVerde1" id="luzVerde1"></div>
+            <button class="tipoDeCambio" onclick="manualoAutomatico()"></button>
         </div>
-        
+        <script src="/JAVASCRIPT/index.js"></script>
 </body>
 </html>
