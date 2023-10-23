@@ -26,7 +26,8 @@ body {
     position: absolute; 
     height: 130px;
     width: 130px;
-    background: rgb(48, 48, 48);
+    background: radial-gradient(rgb(48, 48, 48), #000000);
+    box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 11.9%;
     left: 36.2%;
@@ -37,7 +38,8 @@ body {
     position: absolute; 
     height: 130px;
     width: 130px;
-    background: rgb(48, 48, 48);
+    background: radial-gradient(rgb(48, 48, 48), #000000);
+    box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 41.2%;
     left: 36.2%;
@@ -48,7 +50,8 @@ body {
     position: absolute; 
     height: 130px;
     width: 130px;
-    background: rgb(48, 48, 48);
+    background: radial-gradient(rgb(48, 48, 48), #000000);
+    box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 70.7%;
     left: 36.2%;
@@ -59,10 +62,11 @@ body {
     position: absolute; 
     height: 130px;
     width: 130px;
-    background: rgb(48, 48, 48);
+    background: radial-gradient(rgb(48, 48, 48), #000000);
+    box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 11.9%;
-    left: 36.2%;
+    left: 35.2%;
     z-index: 2;
 }
 
@@ -70,10 +74,11 @@ body {
     position: absolute; 
     height: 130px;
     width: 130px;
-    background: rgb(48, 48, 48);
+    background: radial-gradient(rgb(48, 48, 48), #000000);
+    box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 41.2%;
-    left: 36.2%;
+    left: 35.2%;
     z-index: 2;
 }
 
@@ -81,10 +86,22 @@ body {
     position: absolute; 
     height: 130px;
     width: 130px;
-    background: rgb(48, 48, 48);
+    background: radial-gradient(rgb(48, 48, 48), #000000);
+    box-shadow: 0px 0px 5px 5px #000000;
     border-radius: 100px;
     top: 70.7%;
-    left: 36.2%;
+    left: 35.2%;
     z-index: 2;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contenedor button {
+    margin-bottom: 50%;
 }
 
