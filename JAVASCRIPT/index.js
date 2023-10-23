@@ -29,7 +29,9 @@ botonEncendido.addEventListener("click", () => {
             luzRoja.style.removeProperty("Background");
             luzRoja.style.boxShadow = "0px 0px 5px 5px #000000";
             luzVerde.style.removeProperty("Background");
+            luzVerde.style.boxShadow = "0px 0px 5px 5px #000000";
             luzRoja1.style.removeProperty("Background");
+            luzRoja1.style.boxShadow = "0px 0px 5px 5px #000000";
             luzVerde1.style.removeProperty("Background");
             luzVerde1.style.boxShadow = "0px 0px 5px 5px #000000";
     }
