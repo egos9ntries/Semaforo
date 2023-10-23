@@ -94,3 +94,14 @@ body {
     z-index: 2;
 }
 
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contenedor button {
+    margin-bottom: 50%;
+}
+
