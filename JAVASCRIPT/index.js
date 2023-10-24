@@ -110,5 +110,8 @@ function apagarAmarilloInter() {
 }
 
 botonAutomatico.addEventListener("click", () => {
-    
-}
+    let tiempo = 10
+    setInterval(() => {
+        tiempo --
+    }, 1000);
+})
