@@ -22,77 +22,44 @@ body {
     z-index: 1;
 }
 
+.luces {
+    position: absolute; 
+    height: 130px;
+    width: 130px;
+    background: radial-gradient(rgb(48, 48, 48), #000000);
+    box-shadow: 0px 0px 5px 5px #000000;
+    border-radius: 100px;
+    z-index: 2;
+}
+
+.posicionRojo {
+    top: 11.9%;
+    left: 36.2%;
+}
+
+.posicionAmarillo {
+    top: 41.2%;
+    left: 36.2%;
+}
+
+.posicionVerde {
+    top: 70.7%;
+    left: 36.2%;
+}
+
 .luzRoja  {
-    position: absolute; 
-    height: 130px;
-    width: 130px;
-    background: radial-gradient(rgb(48, 48, 48), #000000);
-    box-shadow: 0px 0px 5px 5px #000000;
-    border-radius: 100px;
-    top: 11.9%;
-    left: 36.2%;
-    z-index: 2;
+   background: radial-gradient(circle, #ff0000, #800000);
+   box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
 }
-
 .luzAmarilla {
-    position: absolute; 
-    height: 130px;
-    width: 130px;
-    background: radial-gradient(rgb(48, 48, 48), #000000);
-    box-shadow: 0px 0px 5px 5px #000000;
-    border-radius: 100px;
-    top: 41.2%;
-    left: 36.2%;
-    z-index: 2;
+   background: radial-gradient(circle, #ffff00, #cccc00);
+   box-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
+}
+.luzVerde  {
+   background: radial-gradient(circle, #00ff04, #008000);
+   box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
 }
 
-.luzVerde {
-    position: absolute; 
-    height: 130px;
-    width: 130px;
-    background: radial-gradient(rgb(48, 48, 48), #000000);
-    box-shadow: 0px 0px 5px 5px #000000;
-    border-radius: 100px;
-    top: 70.7%;
-    left: 36.2%;
-    z-index: 2;
-}
-
-.luzRoja1  {
-    position: absolute; 
-    height: 130px;
-    width: 130px;
-    background: radial-gradient(rgb(48, 48, 48), #000000);
-    box-shadow: 0px 0px 5px 5px #000000;
-    border-radius: 100px;
-    top: 11.9%;
-    left: 35.2%;
-    z-index: 2;
-}
-
-.luzAmarilla1 {
-    position: absolute; 
-    height: 130px;
-    width: 130px;
-    background: radial-gradient(rgb(48, 48, 48), #000000);
-    box-shadow: 0px 0px 5px 5px #000000;
-    border-radius: 100px;
-    top: 41.2%;
-    left: 35.2%;
-    z-index: 2;
-}
-
-.luzVerde1 {
-    position: absolute; 
-    height: 130px;
-    width: 130px;
-    background: radial-gradient(rgb(48, 48, 48), #000000);
-    box-shadow: 0px 0px 5px 5px #000000;
-    border-radius: 100px;
-    top: 70.7%;
-    left: 35.2%;
-    z-index: 2;
-}
 
 .contenedor {
     display: flex;

@@ -11,31 +11,32 @@ const luzVerde1 = document.getElementById("luzVerde1");
 const botonEncendido = document.getElementById("botonEncendido");
 const botonCambio = document.getElementById("botonCambio");
 const botonIntermitente = document.getElementById("botonIntermitente");
+const botonAutomatico = document.getElementById("botonAutomatico");
 
 let encendido = false;
 let cambio = true;
-
+let intermitente = false;
+let intervaloIntermitente
 
 botonEncendido.addEventListener("click", () => {
+    if (intermitente) {
+        intermitente = false
+        clearInterval(intervaloIntermitente)
+    }
     encendido = !encendido;
+    
     if (encendido) {
         botonEncendido.textContent = "Apagar";
-        luzRoja.style.backgroundImage = "radial-gradient(circle, #ff0000, #800000)";
-        luzRoja.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.7)";
-
-        luzVerde1.style.backgroundImage = "radial-gradient(circle, #00ff04, #008000)";
-        luzVerde1.style.boxShadow = "0 0 10px rgba(0, 255, 0, 0.7)";
+        luzRoja.classList.add("luzRoja");
+        luzVerde1.classList.add("luzVerde");
     }
     else {
+        cambio = true
         botonEncendido.textContent = "Encender"
-            luzRoja.style.removeProperty("Background");
-            luzRoja.style.boxShadow = "0px 0px 5px 5px #000000";
-            luzVerde.style.removeProperty("Background");
-            luzVerde.style.boxShadow = "0px 0px 5px 5px #000000";
-            luzRoja1.style.removeProperty("Background");
-            luzRoja1.style.boxShadow = "0px 0px 5px 5px #000000";
-            luzVerde1.style.removeProperty("Background");
-            luzVerde1.style.boxShadow = "0px 0px 5px 5px #000000";
+            luzRoja.classList.remove("luzRoja");
+            luzVerde.classList.remove("luzVerde");
+            luzRoja1.classList.remove("luzRoja");
+            luzVerde1.classList.remove("luzVerde");
     }
 })
 
@@ -44,64 +45,70 @@ botonCambio.addEventListener("click", () => {
         return
     }
    if (cambio) {
-            luzRoja.style.removeProperty("Background");
-            luzRoja.style.boxShadow = "0px 0px 5px 5px #000000";
+            luzRoja.classList.remove("luzRoja");
+            luzVerde1.classList.remove("luzVerde");
 
-            luzVerde1.style.removeProperty("Background");
-            luzVerde1.style.boxShadow = "0px 0px 5px 5px #000000";
-
-            luzAmarilla.style.backgroundImage = "radial-gradient(circle, #ffff00, #cccc00)";
-            luzAmarilla.style.boxShadow = "0 0 10px rgba(255, 255, 0, 0.7)";
-
-            luzAmarilla1.style.backgroundImage = "radial-gradient(circle, #ffff00, #cccc00)";
-            luzAmarilla1.style.boxShadow = "0 0 10px rgba(255, 255, 0, 0.7)";
+            luzAmarilla.classList.add("luzAmarilla");
+            luzAmarilla1.classList.add("luzAmarilla");
 
             setTimeout(function() {
-                luzVerde.style.backgroundImage = "radial-gradient(circle, #00ff04, #008000)";
-                luzVerde.style.boxShadow = "0 0 10px rgba(0, 255, 0, 0.7)";
+                luzVerde.classList.add("luzVerde");
 
-                luzRoja1.style.backgroundImage = "radial-gradient(circle, #ff0000, #800000)";
-                luzRoja1.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.7)";
+                luzRoja1.classList.add("luzRoja");
 
-                luzAmarilla.style.removeProperty("Background");
-                luzAmarilla.style.boxShadow = "0px 0px 5px 5px #000000";
-
-                luzAmarilla1.style.removeProperty("Background");
-                luzAmarilla1.style.boxShadow = "0px 0px 5px 5px #000000";
+                luzAmarilla.classList.remove("luzAmarilla");
+                luzAmarilla1.classList.remove("luzAmarilla");
 
             }, 3000);
         }
         else {
-            luzRoja1.style.removeProperty("Background");
-            luzRoja1.style.boxShadow = "0px 0px 5px 5px #000000";
-
-            luzVerde.style.removeProperty("Background");
-            luzVerde.style.boxShadow = "0px 0px 5px 5px #000000";
-
-            luzAmarilla.style.backgroundImage = "radial-gradient(circle, #ffff00, #cccc00)";
-            luzAmarilla.style.boxShadow = "0 0 10px rgba(255, 255, 0, 0.7)";
-
-            luzAmarilla1.style.backgroundImage = "radial-gradient(circle, #ffff00, #cccc00)";
-            luzAmarilla1.style.boxShadow = "0 0 10px rgba(255, 255, 0, 0.7)";
-
+            luzRoja1.classList.remove("luzRoja");
+            luzVerde.classList.remove("luzVerde");
+            luzAmarilla.classList.add("luzAmarilla");
+            luzAmarilla1.classList.add("luzAmarilla");
+            
             setTimeout(function() {
-                luzVerde1.style.backgroundImage = "radial-gradient(circle, #00ff04, #008000)";
-                luzVerde1.style.boxShadow = "0 0 10px rgba(0, 255, 0, 0.7)";
-
-                luzRoja.style.backgroundImage = "radial-gradient(circle, #ff0000, #800000)";
-                luzRoja.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.7)";
-
-                luzAmarilla.style.removeProperty("Background");
-                luzAmarilla.style.boxShadow = "0px 0px 5px 5px #000000";
-
-                luzAmarilla1.style.removeProperty("Background");
-                luzAmarilla1.style.boxShadow = "0px 0px 5px 5px #000000";
-
+                luzVerde1.classList.add("luzVerde");
+                luzRoja.classList.add("luzRoja");
+                luzAmarilla.classList.remove("luzAmarilla");
+                luzAmarilla1.classList.remove("luzAmarilla");
             }, 3000);
         }
     cambio = !cambio;
 })
 
 botonIntermitente.addEventListener("click", () => {
+    
+    if (!intermitente) {
+    luzRoja.classList.remove("luzRoja");
+    luzVerde1.classList.remove("luzVerde");
+    luzVerde.classList.remove("luzVerde");
+    luzRoja1.classList.remove("luzRoja");
+    luzAmarilla.classList.add("luzAmarilla");
+    luzAmarilla1.classList.add("luzAmarilla");
+    apagarAmarilloInter();
 
+    intervaloIntermitente = setInterval(() => {
+        luzAmarilla.classList.add("luzAmarilla");
+        luzAmarilla1.classList.add("luzAmarilla");
+        apagarAmarilloInter();
+        
+    }, 2000);
+    intermitente = true
+}
+else {
+    intermitente = false
+    clearInterval(intervaloIntermitente)
+}
 })
+
+function apagarAmarilloInter() {
+    setTimeout(() => {
+        luzAmarilla.classList.remove("luzAmarilla");
+        luzAmarilla1.classList.remove("luzAmarilla");
+    }, 1000);
+}
+
+botonAutomatico.addEventListener("click", () => {
+    
+}
