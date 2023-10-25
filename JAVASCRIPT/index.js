@@ -99,6 +99,14 @@ botonIntermitente.addEventListener("click", () => {
 else {
     intermitente = false
     clearInterval(intervaloIntermitente)
+    setTimeout(() => {
+        botonEncendido.textContent = "Apagar";
+        luzRoja.classList.add("luzRoja");
+        luzVerde1.classList.add("luzVerde");
+    }, 1000);
+
+    
+    encendido = !encendido
 }
 })
 
