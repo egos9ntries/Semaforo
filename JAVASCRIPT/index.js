@@ -94,7 +94,7 @@ botonCambio.addEventListener("click", () => {
                 luzAmarilla.style.removeProperty("Background");
                 luzAmarilla.style.boxShadow = "0px 0px 5px 5px #000000";
 
-                luzAmarilla1.style.removeProperty("Background");
+                luzAmarilla1.sty7le.removeProperty("Background");
                 luzAmarilla1.style.boxShadow = "0px 0px 5px 5px #000000";
 
             }, 3000);
