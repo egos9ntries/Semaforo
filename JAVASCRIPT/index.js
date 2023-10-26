@@ -24,7 +24,7 @@ botonEncendido.addEventListener("click", () => {
         clearInterval(intervaloIntermitente)
     }
     encendido = !encendido;
-    
+
     if (encendido) {
         botonEncendido.textContent = "Apagar";
         luzRoja.classList.add("luzRoja");
@@ -33,10 +33,10 @@ botonEncendido.addEventListener("click", () => {
     else {
         cambio = true
         botonEncendido.textContent = "Encender"
-            luzRoja.classList.remove("luzRoja");
-            luzVerde.classList.remove("luzVerde");
-            luzRoja1.classList.remove("luzRoja");
-            luzVerde1.classList.remove("luzVerde");
+        luzRoja.classList.remove("luzRoja");
+        luzVerde.classList.remove("luzVerde");
+        luzRoja1.classList.remove("luzRoja");
+        luzVerde1.classList.remove("luzVerde");
     }
 })
 
@@ -44,70 +44,45 @@ botonCambio.addEventListener("click", () => {
     if (!encendido) {
         return
     }
-   if (cambio) {
-            luzRoja.classList.remove("luzRoja");
-            luzVerde1.classList.remove("luzVerde");
-
-            luzAmarilla.classList.add("luzAmarilla");
-            luzAmarilla1.classList.add("luzAmarilla");
-
-            setTimeout(function() {
-                luzVerde.classList.add("luzVerde");
-
-                luzRoja1.classList.add("luzRoja");
-
-                luzAmarilla.classList.remove("luzAmarilla");
-                luzAmarilla1.classList.remove("luzAmarilla");
-
-            }, 3000);
-        }
-        else {
-            luzRoja1.classList.remove("luzRoja");
-            luzVerde.classList.remove("luzVerde");
-            luzAmarilla.classList.add("luzAmarilla");
-            luzAmarilla1.classList.add("luzAmarilla");
-            
-            setTimeout(function() {
-                luzVerde1.classList.add("luzVerde");
-                luzRoja.classList.add("luzRoja");
-                luzAmarilla.classList.remove("luzAmarilla");
-                luzAmarilla1.classList.remove("luzAmarilla");
-            }, 3000);
-        }
+    cambioSemaforo()
     cambio = !cambio;
 })
 
 botonIntermitente.addEventListener("click", () => {
-    
-    if (!intermitente) {
-    luzRoja.classList.remove("luzRoja");
-    luzVerde1.classList.remove("luzVerde");
-    luzVerde.classList.remove("luzVerde");
-    luzRoja1.classList.remove("luzRoja");
-    luzAmarilla.classList.add("luzAmarilla");
-    luzAmarilla1.classList.add("luzAmarilla");
-    apagarAmarilloInter();
+    if (!encendido) {
+        return
+    }
 
-    intervaloIntermitente = setInterval(() => {
+    if (!intermitente) {
+
+        luzRoja.classList.remove("luzRoja");
+        luzVerde1.classList.remove("luzVerde");
+        luzVerde.classList.remove("luzVerde");
+        luzRoja1.classList.remove("luzRoja");
         luzAmarilla.classList.add("luzAmarilla");
         luzAmarilla1.classList.add("luzAmarilla");
         apagarAmarilloInter();
-        
-    }, 2000);
-    intermitente = true
-}
-else {
-    intermitente = false
-    clearInterval(intervaloIntermitente)
-    setTimeout(() => {
-        botonEncendido.textContent = "Apagar";
-        luzRoja.classList.add("luzRoja");
-        luzVerde1.classList.add("luzVerde");
-    }, 1000);
 
-    
-    encendido = !encendido
-}
+        intervaloIntermitente = setInterval(() => {
+            luzAmarilla.classList.add("luzAmarilla");
+            luzAmarilla1.classList.add("luzAmarilla");
+            apagarAmarilloInter();
+
+        }, 2000);
+        intermitente = true
+    }
+    else {
+        intermitente = false
+        clearInterval(intervaloIntermitente)
+        setTimeout(() => {
+            botonEncendido.textContent = "Apagar";
+            luzRoja.classList.add("luzRoja");
+            luzVerde1.classList.add("luzVerde");
+        }, 1000);
+
+
+        encendido = !encendido
+    }
 })
 
 function apagarAmarilloInter() {
@@ -120,6 +95,45 @@ function apagarAmarilloInter() {
 botonAutomatico.addEventListener("click", () => {
     let tiempo = 10
     setInterval(() => {
-        tiempo --
+        if (tiempo > 0) {
+            tiempo--
+            console.log(tiempo)
+        }
+        else {
+            return
+        }
     }, 1000);
 })
+
+function cambioSemaforo() {
+    if (cambio) {
+        luzRoja.classList.remove("luzRoja");
+        luzVerde1.classList.remove("luzVerde");
+
+        luzAmarilla.classList.add("luzAmarilla");
+        luzAmarilla1.classList.add("luzAmarilla");
+
+        setTimeout(function () {
+            luzVerde.classList.add("luzVerde");
+
+            luzRoja1.classList.add("luzRoja");
+
+            luzAmarilla.classList.remove("luzAmarilla");
+            luzAmarilla1.classList.remove("luzAmarilla");
+
+        }, 3000);
+    }
+    else {
+        luzRoja1.classList.remove("luzRoja");
+        luzVerde.classList.remove("luzVerde");
+        luzAmarilla.classList.add("luzAmarilla");
+        luzAmarilla1.classList.add("luzAmarilla");
+
+        setTimeout(function () {
+            luzVerde1.classList.add("luzVerde");
+            luzRoja.classList.add("luzRoja");
+            luzAmarilla.classList.remove("luzAmarilla");
+            luzAmarilla1.classList.remove("luzAmarilla");
+        }, 3000);
+    }
+}
