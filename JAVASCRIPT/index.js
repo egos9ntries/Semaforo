@@ -17,6 +17,9 @@ let encendido = false;
 let cambio = true;
 let intermitente = false;
 let intervaloIntermitente
+let automatico = false
+let intervaloAutomatico
+let intervaloCompleto
 
 botonEncendido.addEventListener("click", () => {
     if (intermitente) {
@@ -41,11 +44,13 @@ botonEncendido.addEventListener("click", () => {
 })
 
 botonCambio.addEventListener("click", () => {
-    if (!encendido) {
+    console.log(`boton cambio al inicio ${cambio}`);
+    if (!encendido || intermitente) {
         return
     }
     cambioSemaforo()
     cambio = !cambio;
+    console.log(`boton cambio al final ${cambio}`);
 })
 
 botonIntermitente.addEventListener("click", () => {
@@ -70,18 +75,16 @@ botonIntermitente.addEventListener("click", () => {
 
         }, 2000);
         intermitente = true
+        console.log(`boton intermitente if intermitenete es falso ${cambio}`);
     }
     else {
         intermitente = false
         clearInterval(intervaloIntermitente)
-        setTimeout(() => {
-            botonEncendido.textContent = "Apagar";
-            luzRoja.classList.add("luzRoja");
-            luzVerde1.classList.add("luzVerde");
-        }, 1000);
+        cambio = false
+        cambioSemaforo()
+        cambio = true
 
-
-        encendido = !encendido
+        console.log(`boton intermitente if intermitenete es verdadero ${cambio}`);
     }
 })
 
@@ -93,17 +96,46 @@ function apagarAmarilloInter() {
 }
 
 botonAutomatico.addEventListener("click", () => {
-    let tiempo = 10
-    setInterval(() => {
-        if (tiempo > 0) {
-            tiempo--
-            console.log(tiempo)
-        }
-        else {
-            return
-        }
-    }, 1000);
+    if (!encendido) {
+        return
+    }
+    automatico = !automatico
+    console.log(`automatico ${automatico}`)
+    let tiempo = 0
+    if (automatico) {
+            tiempo = 10
+            intervaloAutomatico = setInterval(() => {
+                tiempo--
+                console.log(tiempo);
+                if (tiempo == 0) {
+                    clearInterval(intervaloAutomatico);
+                    console.log(tiempo)
+                    console.log(cambio)
+                    cambioSemaforo()
+                    cambio = !cambio
+                    console.log(cambio)
+                }
+            }, 1000);
+
+    }
+
 })
+
+
+// function iniciarCuentaRegresiva() {
+//     let intervalo = setInterval(function() {
+//         console.log(cuentaRegresiva);
+        
+//         if (cuentaRegresiva === 0) {
+//             clearInterval(intervalo); // Detiene el intervalo
+//             ejecutarFuncion(); // Ejecuta la función
+//             cuentaRegresiva = 10; // Reinicia la cuenta regresiva
+//             setTimeout(iniciarCuentaRegresiva, 1000); // Inicia la cuenta regresiva nuevamente después de 1 segundo
+//         } else {
+//             cuentaRegresiva--;
+//         }
+//     }, 1000); // Intervalo de 1 segundo
+
 
 function cambioSemaforo() {
     if (cambio) {
