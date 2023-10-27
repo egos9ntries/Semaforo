@@ -19,7 +19,6 @@ let intermitente = false;
 let intervaloIntermitente
 let automatico = false
 let intervaloAutomatico
-let intervaloCompleto
 
 botonEncendido.addEventListener("click", () => {
     if (intermitente) {
@@ -101,41 +100,28 @@ botonAutomatico.addEventListener("click", () => {
     }
     automatico = !automatico
     console.log(`automatico ${automatico}`)
-    let tiempo = 0
-    if (automatico) {
+    cuentaRegresiva()
+    })
+
+
+    function cuentaRegresiva() {
+    let tiempo = 10
+    let intervaloCompleto = setInterval(() =>{
+        if (tiempo == 0) {
+            clearInterval(intervaloCompleto)
+            console.log(tiempo)
+            console.log(cambio)
+            cambioSemaforo()
+            cambio = !cambio
+            console.log(cambio)
             tiempo = 10
-            intervaloAutomatico = setInterval(() => {
-                tiempo--
-                console.log(tiempo);
-                if (tiempo == 0) {
-                    clearInterval(intervaloAutomatico);
-                    console.log(tiempo)
-                    console.log(cambio)
-                    cambioSemaforo()
-                    cambio = !cambio
-                    console.log(cambio)
-                }
-            }, 1000);
-
-    }
-
-})
-
-
-// function iniciarCuentaRegresiva() {
-//     let intervalo = setInterval(function() {
-//         console.log(cuentaRegresiva);
-        
-//         if (cuentaRegresiva === 0) {
-//             clearInterval(intervalo); // Detiene el intervalo
-//             ejecutarFuncion(); // Ejecuta la función
-//             cuentaRegresiva = 10; // Reinicia la cuenta regresiva
-//             setTimeout(iniciarCuentaRegresiva, 1000); // Inicia la cuenta regresiva nuevamente después de 1 segundo
-//         } else {
-//             cuentaRegresiva--;
-//         }
-//     }, 1000); // Intervalo de 1 segundo
-
+            setTimeout(cuentaRegresiva,1000)
+        }
+        else {
+             tiempo --
+        }
+     },1000)
+     }
 
 function cambioSemaforo() {
     if (cambio) {
