@@ -51,6 +51,12 @@ botonEncendido.addEventListener("click", () => {
 })
 
 botonCambio.addEventListener("click", () => {
+    if (automatico) {
+        automatico = false
+        clearInterval(intervaloCompleto)
+        luzAmarilla.value = null
+        luzAmarilla1.value = null
+    }
     console.log(`boton cambio al inicio ${cambio}`);
     if (!encendido || intermitente) {
         return
@@ -63,6 +69,13 @@ botonCambio.addEventListener("click", () => {
 botonIntermitente.addEventListener("click", () => {
     if (!encendido) {
         return
+    }
+
+    if (automatico) {
+        automatico = false
+        clearInterval(intervaloCompleto)
+        luzAmarilla.value = null
+        luzAmarilla1.value = null
     }
 
     if (!intermitente) {
@@ -109,8 +122,16 @@ botonAutomatico.addEventListener("click", () => {
     automatico = !automatico
     console.log(`automatico ${automatico}`)
     if (automatico) {
-        luzAmarilla.classList.add("cuentaRojo");
+        if(cambio) {
+            luzAmarilla.classList.add("cuentaRojo");
         luzAmarilla1.classList.add("cuentaVerde");
+    }
+    else {
+        luzAmarilla.classList.add("cuentaVerde");
+        luzAmarilla1.classList.add("cuentaRojo");
+    }
+        
+
         cuentaRegresiva()
     }
     else {
@@ -231,12 +252,10 @@ function intermitenciaCorta() {
         intermitente = true
         console.log(`boton intermitente if intermitenete es falso ${cambio}`);
     }
-    setTimeout(() => {
         intermitente = false
         clearInterval(intervaloIntermitente)
         cambio = false
         cambioSemaforo()
         cambio = true
         console.log(`boton intermitente if intermitenete es verdadero ${cambio}`);
-    }, 3000);
 }
