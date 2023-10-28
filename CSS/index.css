@@ -72,3 +72,27 @@ body {
     margin-bottom: 50%;
 }
 
+@font-face {
+    font-family: "DS Digi";
+    font: weight 400px; 
+    src: url("../FUENTES/ds-digi-webfont.woff2") format("woff");
+   }
+
+.luzAmarillaLed {
+  font-family: DS Digi;
+   border: #00000000;
+   font-size: 800%;
+   text-align:center;
+}
+
+.cuentaRojo {
+    color: #ff0000;
+}
+
+.cuentaVerde {
+    color: #00ff04;
+}
+
+.cuentaAmarillo {
+    color: #ffff00;
+}

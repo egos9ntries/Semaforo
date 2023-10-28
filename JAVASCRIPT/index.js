@@ -19,11 +19,19 @@ let intermitente = false;
 let intervaloIntermitente
 let automatico = false
 let intervaloAutomatico
+let intervaloCompleto
+
+
 
 botonEncendido.addEventListener("click", () => {
-    if (intermitente) {
+    if (intermitente || automatico) {
         intermitente = false
+        automatico = false
+        clearInterval(intervaloCompleto)
         clearInterval(intervaloIntermitente)
+        luzAmarilla.value = null
+        luzAmarilla1.value = null
+        console.log(`Apagar, automatico ${automatico}, intermitente ${intermitente}, cambio ${cambio} `)
     }
     encendido = !encendido;
 
@@ -100,28 +108,75 @@ botonAutomatico.addEventListener("click", () => {
     }
     automatico = !automatico
     console.log(`automatico ${automatico}`)
-    cuentaRegresiva()
-    })
+    if (automatico) {
+        luzAmarilla.classList.add("cuentaRojo");
+        luzAmarilla1.classList.add("cuentaVerde");
+        cuentaRegresiva()
+    }
+    else {
+        clearInterval(intervaloCompleto)
+        luzAmarilla.value = null
+        luzAmarilla1.value = null
+        intermitente = false
+        intermitenciaCorta()
+        }
+
+})
 
 
-    function cuentaRegresiva() {
+function cuentaRegresiva() {
     let tiempo = 10
-    let intervaloCompleto = setInterval(() =>{
+    intervaloCompleto = setInterval(() => {
+        if (tiempo > 0) {
+            luzAmarilla.value = tiempo
+            luzAmarilla1.value = tiempo
+        }
+        else {
+            luzAmarilla.value = null
+            luzAmarilla1.value = null
+        }
+       
         if (tiempo == 0) {
             clearInterval(intervaloCompleto)
             console.log(tiempo)
             console.log(cambio)
-            cambioSemaforo()
+            cambioSemaforoAuto()
             cambio = !cambio
             console.log(cambio)
             tiempo = 10
-            setTimeout(cuentaRegresiva,1000)
+            cuentaRegresiva()
         }
         else {
-             tiempo --
+            tiempo--
+            
         }
-     },1000)
-     }
+        if (tiempo < 3) {
+            luzAmarilla.classList.replace("cuentaRojo", "cuentaAmarillo")
+            luzAmarilla1.classList.replace("cuentaVerde", "cuentaAmarillo")
+            luzAmarilla.classList.replace("cuentaVerde", "cuentaAmarillo")
+            luzAmarilla1.classList.replace("cuentaRojo", "cuentaAmarillo")
+        }
+    }, 1000)
+}
+
+function cambioSemaforoAuto() {
+    if (cambio) {
+        luzRoja.classList.remove("luzRoja");
+        luzVerde1.classList.remove("luzVerde");
+        luzVerde.classList.add("luzVerde");
+        luzRoja1.classList.add("luzRoja");
+        luzAmarilla.classList.replace("cuentaAmarillo", "cuentaVerde")
+        luzAmarilla1.classList.replace("cuentaAmarillo", "cuentaRojo")
+    }
+    else {
+        luzRoja1.classList.remove("luzRoja");
+        luzVerde.classList.remove("luzVerde");
+        luzVerde1.classList.add("luzVerde");
+        luzRoja.classList.add("luzRoja");
+        luzAmarilla.classList.replace("cuentaAmarillo", "cuentaRojo")
+        luzAmarilla1.classList.replace("cuentaAmarillo", "cuentaVerde")
+    }
+}
 
 function cambioSemaforo() {
     if (cambio) {
@@ -154,4 +209,34 @@ function cambioSemaforo() {
             luzAmarilla1.classList.remove("luzAmarilla");
         }, 3000);
     }
+}
+
+function intermitenciaCorta() {
+
+    if (!intermitente) {
+        luzRoja.classList.remove("luzRoja");
+        luzVerde1.classList.remove("luzVerde");
+        luzVerde.classList.remove("luzVerde");
+        luzRoja1.classList.remove("luzRoja");
+        luzAmarilla.classList.add("luzAmarilla");
+        luzAmarilla1.classList.add("luzAmarilla");
+        apagarAmarilloInter();
+
+        intervaloIntermitente = setInterval(() => {
+            luzAmarilla.classList.add("luzAmarilla");
+            luzAmarilla1.classList.add("luzAmarilla");
+            apagarAmarilloInter();
+
+        }, 2000);
+        intermitente = true
+        console.log(`boton intermitente if intermitenete es falso ${cambio}`);
+    }
+    setTimeout(() => {
+        intermitente = false
+        clearInterval(intervaloIntermitente)
+        cambio = false
+        cambioSemaforo()
+        cambio = true
+        console.log(`boton intermitente if intermitenete es verdadero ${cambio}`);
+    }, 3000);
 }
