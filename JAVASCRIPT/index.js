@@ -24,6 +24,7 @@ let intervaloCompleto
 
 
 botonEncendido.addEventListener("click", () => {
+    console.log(`Boton encendido inicio: Encendido: ${encendido}, cambio: ${cambio}, intermitente: ${intermitente}, automatico: ${automatico}`)
     if (intermitente || automatico) {
         intermitente = false
         automatico = false
@@ -48,6 +49,7 @@ botonEncendido.addEventListener("click", () => {
         luzRoja1.classList.remove("luzRoja");
         luzVerde1.classList.remove("luzVerde");
     }
+    console.log(`Boton encendido final: Encendido: ${encendido}, cambio: ${cambio}, intermitente: ${intermitente}, automatico: ${automatico}`)
 })
 
 botonCambio.addEventListener("click", () => {
@@ -63,10 +65,11 @@ botonCambio.addEventListener("click", () => {
     }
     cambioSemaforo()
     cambio = !cambio;
-    console.log(`boton cambio al final ${cambio}`);
+    
 })
 
 botonIntermitente.addEventListener("click", () => {
+    console.log(`Boton intermitente inicio: Encendido: ${encendido}, cambio: ${cambio}, intermitente: ${intermitente}, automatico: ${automatico}`)
     if (!encendido) {
         return
     }
@@ -95,7 +98,6 @@ botonIntermitente.addEventListener("click", () => {
 
         }, 2000);
         intermitente = true
-        console.log(`boton intermitente if intermitenete es falso ${cambio}`);
     }
     else {
         intermitente = false
@@ -104,8 +106,9 @@ botonIntermitente.addEventListener("click", () => {
         cambioSemaforo()
         cambio = true
 
-        console.log(`boton intermitente if intermitenete es verdadero ${cambio}`);
+
     }
+    console.log(`Boton intermitente final: Encendido: ${encendido}, cambio: ${cambio}, intermitente: ${intermitente}, automatico: ${automatico}`)
 })
 
 function apagarAmarilloInter() {
@@ -116,38 +119,47 @@ function apagarAmarilloInter() {
 }
 
 botonAutomatico.addEventListener("click", () => {
+    console.log(`Boton automatico inicio: Encendido: ${encendido}, cambio: ${cambio}, intermitente: ${intermitente}, automatico: ${automatico}`)
     if (!encendido) {
         return
     }
-    automatico = !automatico
-    console.log(`automatico ${automatico}`)
-    if (automatico) {
-        if(cambio) {
-            luzAmarilla.classList.add("cuentaRojo");
-        luzAmarilla1.classList.add("cuentaVerde");
-    }
-    else {
-        luzAmarilla.classList.add("cuentaVerde");
-        luzAmarilla1.classList.add("cuentaRojo");
-    }
-        
 
+    if (intermitente) {
+        intermitente = false
+        clearInterval(intervaloIntermitente)
+        luzAmarilla.classList.remove("luzAmarilla");
+        luzAmarilla1.classList.remove("luzAmarilla");
+        luzRoja.classList.add("luzRoja");
+        luzVerde1.classList.add("luzVerde");
+
+    }
+    
+    luzAmarilla.classList.add("cuentaVerde");
+    luzAmarilla1.classList.add("cuentaRojo");
+
+    if (!automatico) {
+        automatico = true
+        cambioLed()
         cuentaRegresiva()
     }
     else {
+        automatico = false
         clearInterval(intervaloCompleto)
         luzAmarilla.value = null
         luzAmarilla1.value = null
-        intermitente = false
-        intermitenciaCorta()
-        }
-
+        cambioSemaforo()
+    }
+    console.log(`Boton automatico final: Encendido: ${encendido}, cambio: ${cambio}, intermitente: ${intermitente}, automatico: ${automatico}`)
 })
 
 
 function cuentaRegresiva() {
     let tiempo = 10
+    luzAmarilla.value = tiempo
+    luzAmarilla1.value = tiempo
     intervaloCompleto = setInterval(() => {
+        tiempo--
+
         if (tiempo > 0) {
             luzAmarilla.value = tiempo
             luzAmarilla1.value = tiempo
@@ -155,48 +167,13 @@ function cuentaRegresiva() {
         else {
             luzAmarilla.value = null
             luzAmarilla1.value = null
-        }
-       
-        if (tiempo == 0) {
             clearInterval(intervaloCompleto)
-            console.log(tiempo)
-            console.log(cambio)
-            cambioSemaforoAuto()
+            cambioSemaforo()
             cambio = !cambio
-            console.log(cambio)
             tiempo = 10
-            cuentaRegresiva()
         }
-        else {
-            tiempo--
-            
-        }
-        if (tiempo < 3) {
-            luzAmarilla.classList.replace("cuentaRojo", "cuentaAmarillo")
-            luzAmarilla1.classList.replace("cuentaVerde", "cuentaAmarillo")
-            luzAmarilla.classList.replace("cuentaVerde", "cuentaAmarillo")
-            luzAmarilla1.classList.replace("cuentaRojo", "cuentaAmarillo")
-        }
-    }, 1000)
-}
 
-function cambioSemaforoAuto() {
-    if (cambio) {
-        luzRoja.classList.remove("luzRoja");
-        luzVerde1.classList.remove("luzVerde");
-        luzVerde.classList.add("luzVerde");
-        luzRoja1.classList.add("luzRoja");
-        luzAmarilla.classList.replace("cuentaAmarillo", "cuentaVerde")
-        luzAmarilla1.classList.replace("cuentaAmarillo", "cuentaRojo")
-    }
-    else {
-        luzRoja1.classList.remove("luzRoja");
-        luzVerde.classList.remove("luzVerde");
-        luzVerde1.classList.add("luzVerde");
-        luzRoja.classList.add("luzRoja");
-        luzAmarilla.classList.replace("cuentaAmarillo", "cuentaRojo")
-        luzAmarilla1.classList.replace("cuentaAmarillo", "cuentaVerde")
-    }
+    }, 1000)
 }
 
 function cambioSemaforo() {
@@ -214,7 +191,10 @@ function cambioSemaforo() {
 
             luzAmarilla.classList.remove("luzAmarilla");
             luzAmarilla1.classList.remove("luzAmarilla");
-
+            if (automatico) {
+                cuentaRegresiva()
+            cambioLed()
+            }
         }, 3000);
     }
     else {
@@ -228,34 +208,49 @@ function cambioSemaforo() {
             luzRoja.classList.add("luzRoja");
             luzAmarilla.classList.remove("luzAmarilla");
             luzAmarilla1.classList.remove("luzAmarilla");
+            if (automatico) {
+                cuentaRegresiva()
+            cambioLed()
+            }
         }, 3000);
     }
 }
 
-function intermitenciaCorta() {
+// function intermitenciaCorta() {
 
-    if (!intermitente) {
-        luzRoja.classList.remove("luzRoja");
-        luzVerde1.classList.remove("luzVerde");
-        luzVerde.classList.remove("luzVerde");
-        luzRoja1.classList.remove("luzRoja");
-        luzAmarilla.classList.add("luzAmarilla");
-        luzAmarilla1.classList.add("luzAmarilla");
-        apagarAmarilloInter();
+//     if (!intermitente) {
+//         luzRoja.classList.remove("luzRoja");
+//         luzVerde1.classList.remove("luzVerde");
+//         luzVerde.classList.remove("luzVerde");
+//         luzRoja1.classList.remove("luzRoja");
+//         luzAmarilla.classList.add("luzAmarilla");
+//         luzAmarilla1.classList.add("luzAmarilla");
+//         apagarAmarilloInter();
 
-        intervaloIntermitente = setInterval(() => {
-            luzAmarilla.classList.add("luzAmarilla");
-            luzAmarilla1.classList.add("luzAmarilla");
-            apagarAmarilloInter();
+//         intervaloIntermitente = setInterval(() => {
+//             luzAmarilla.classList.add("luzAmarilla");
+//             luzAmarilla1.classList.add("luzAmarilla");
+//             apagarAmarilloInter();
 
-        }, 2000);
-        intermitente = true
-        console.log(`boton intermitente if intermitenete es falso ${cambio}`);
+//         }, 2000);
+//         intermitente = true
+//         console.log(`boton intermitente if intermitenete es falso ${cambio}`);
+//     }
+//     intermitente = false
+//     clearInterval(intervaloIntermitente)
+//     cambio = false
+//     cambioSemaforo()
+//     cambio = true
+//     console.log(`boton intermitente if intermitenete es verdadero ${cambio}`);
+// }
+
+function cambioLed() {
+    if (cambio) {
+        luzAmarilla.classList.replace("cuentaVerde","cuentaRojo");
+        luzAmarilla1.classList.replace("cuentaRojo","cuentaVerde");
     }
-        intermitente = false
-        clearInterval(intervaloIntermitente)
-        cambio = false
-        cambioSemaforo()
-        cambio = true
-        console.log(`boton intermitente if intermitenete es verdadero ${cambio}`);
+    else {
+        luzAmarilla.classList.replace("cuentaRojo","cuentaVerde");
+        luzAmarilla1.classList.replace("cuentaVerde","cuentaRojo");
+    }
 }
