@@ -1,19 +1,30 @@
 body {
+    background-image: url(../Mesa\ de\ trabajo\ 57.png);
+    background-size: 100%;
     display: flex;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #fcf9df;
+    background-color: #000000;
     flex-direction: column;
 }
 
 .semaforos-contenedor {
-    padding-top: 100px;
-    width: 700px;
-    display: flex;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    grid-template-areas: ". . ."; 
+    justify-content: space-around;
+    align-content: center;
+    justify-items: center;
     align-items: center;
-    justify-content: space-between;
+}
 
+.pantallas {
+    height: 500px;
 }
 
 .semaforo {
@@ -53,12 +64,37 @@ body {
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
 }
 
-
 .botones {
-    padding-top: 100px;
+    margin-top: 0;
+    background-image: url(../Background-iron.png
+    );
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 30%;
+    display: flex;
+   justify-content: space-around;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    
+}
+
+.tablero {
+    background-color: #929292;
+    z-index: 2;
+    border-radius: 0% 0% 20% 20%;
+    border: 3px solid rgb(110, 109, 109);
+    box-shadow: 0px 0px 50px 1px inset rgb(61, 61, 61);
+    padding-top: 30px;
+    padding-bottom: 50px;
     width: 400px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+
 }
 
 .botonEncendido {
@@ -197,8 +233,8 @@ body {
 }
 
 
-.BaseMaquina {
-    position: absolute;
+/* .BaseMaquina {
+
     top: 74.6%;
     left: 33.9%;
     width: 32%;
@@ -208,9 +244,9 @@ body {
     border-radius: 0% 0% 20% 20%;
     border: 3px solid rgb(179, 179, 179);
     box-shadow: 0px 0px 50px 1px inset rgb(19, 19, 19);
-}
+} */
 
-.Manija1 {
+/* .Manija1 {
     position: absolute;
     width: 1%;
     left: 44.7%;
@@ -280,4 +316,4 @@ body {
     background-color: #ff0000;
     box-shadow: 0px 0px 10px 1px inset rgb(119, 3, 3);
     z-index: 2;
-}
+} */
