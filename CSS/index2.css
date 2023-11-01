@@ -12,8 +12,8 @@ body {
     width: 700px;
     display: flex;
     align-items: center;
-    justify-content:space-between;
-  
+    justify-content: space-between;
+
 }
 
 .semaforo {
@@ -24,9 +24,9 @@ body {
     width: 110px;
     height: 300px;
     justify-content: space-evenly;
-  border-radius: 10px;
-  background-color: #212121;
-  box-shadow: 0px 0px 1px 1px #000000;
+    border-radius: 10px;
+    background-color: #212121;
+    box-shadow: 0px 0px 1px 1px #000000;
 }
 
 .luces {
@@ -37,11 +37,28 @@ body {
     box-shadow: 0px 0px 2px 2px #000000;
 }
 
+
+.luzRoja {
+    background: radial-gradient(circle, #ff0000, #800000);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+.luzAmarilla {
+    background: radial-gradient(circle, #ffff00, #cccc00);
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
+}
+
+.luzVerde {
+    background: radial-gradient(circle, #00ff04, #008000);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+
 .botones {
     padding-top: 100px;
     width: 400px;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 
 .botonEncendido {
@@ -49,12 +66,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
- width: 50px;
- height: 50px;
+    width: 50px;
+    height: 50px;
 
- border: 5px solid #a6a6a6;
- box-shadow: 0px 0px 5px 0px #7f7e7e;
- z-index: 3;
+    border: 5px solid #a6a6a6;
+    box-shadow: 0px 0px 5px 0px #7f7e7e;
+    z-index: 3;
 }
 
 .on {
@@ -76,43 +93,95 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
- width: 60px;
- height: 50px;
+    width: 60px;
+    height: 50px;
 
- border: 5px solid #a6a6a6;
- background: radial-gradient(rgb(248, 175, 133), #e29a3b);
- box-shadow: 0px 0px 5px 0px #7f7e7e;
- z-index: 3;
+    border: 5px solid #a6a6a6;
+    box-shadow: 0px 0px 5px 0px #7f7e7e;
+    z-index: 3;
 }
+
+.botonCambioHab {
+    background: radial-gradient(rgb(248, 175, 133), #ff9100);
+
+}
+
+
+.botonCambioDes {
+    background: radial-gradient(rgb(185, 184, 184), #a0a0a0);
+}
+
 
 .botonCambioImg {
     height: 30px;
 }
 
-.luzRoja  {
-    background: radial-gradient(circle, #ff0000, #800000);
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
- }
- .luzAmarilla {
-    background: radial-gradient(circle, #ffff00, #cccc00);
-    box-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
- }
- .luzVerde  {
-    background: radial-gradient(circle, #00ff04, #008000);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
- }
- 
- @font-face {
+
+.botonIntermitenteLogo {
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 50px;
+    border: 5px solid #a6a6a6;
+
+    box-shadow: 0px 0px 5px 0px #7f7e7e;
+    z-index: 3;
+}
+
+
+.botonInterHab {
+    background: radial-gradient(rgb(250, 255, 209), #efe824);
+}
+
+.botonInterDes {
+    background: radial-gradient(rgb(185, 184, 184), #a0a0a0);
+}
+
+
+.botonIntermitenciaImg {
+    height: 30px;
+}
+
+.botonAutomaticoLogo {
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 50px;
+    border: 5px solid #a6a6a6;
+    box-shadow: 0px 0px 5px 0px #7f7e7e;
+    z-index: 3;
+}
+
+.botonAutoHab {
+    background: radial-gradient(rgb(205, 206, 236), #2d42ff);
+}
+
+.botonAutoDes {
+    background: radial-gradient(rgb(185, 184, 184), #a0a0a0);
+}
+
+
+
+.botonAutomaticoImg {
+    height: 30px;
+}
+
+
+@font-face {
     font-family: "DS Digi";
-    font: weight 400px; 
+    font: weight 400px;
     src: url("../FUENTES/ds-digi-webfont.woff2") format("woff");
-   }
+}
 
 .luzAmarillaLed {
-  font-family: DS Digi;
-   border: #00000000;
-   font-size: 80px;
-   text-align:center;
+    font-family: DS Digi;
+    border: #00000000;
+    font-size: 80px;
+    text-align: center;
 }
 
 .cuentaRojo {
@@ -125,45 +194,10 @@ body {
 
 .cuentaAmarillo {
     color: #ffff00;
-} 
-
-
-
-.botonIntermitenteLogo{
-    border-radius: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
- width: 60px;
- height: 50px;
- border: 5px solid #a6a6a6;
- background: radial-gradient(rgb(235, 248, 133), #ebe64c);
- box-shadow: 0px 0px 5px 0px #7f7e7e;
- z-index: 3;
 }
 
-.botonIntermitenciaImg{
-    height: 30px;
-}
 
-.botonAutomaticoLogo{
-    border-radius: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
- width: 60px;
- height: 50px;
- border: 5px solid #a6a6a6;
- background: radial-gradient(rgb(255, 255, 255), #e9e9e9);
- box-shadow: 0px 0px 5px 0px #7f7e7e;
- z-index: 3;
-}
-
-.botonAutomaticoImg{
-    height: 30px;
-}
-
-.BaseMaquina{
+.BaseMaquina {
     position: absolute;
     top: 74.6%;
     left: 33.9%;
@@ -176,7 +210,7 @@ body {
     box-shadow: 0px 0px 50px 1px inset rgb(19, 19, 19);
 }
 
-.Manija1{
+.Manija1 {
     position: absolute;
     width: 1%;
     left: 44.7%;
@@ -188,7 +222,7 @@ body {
     z-index: 1;
 }
 
-.Estuche1{
+.Estuche1 {
     position: relative;
     bottom: 4%;
     right: 30%;
@@ -200,7 +234,7 @@ body {
     z-index: 2;
 }
 
-.Estuche2{
+.Estuche2 {
     position: relative;
     top: 15%;
     right: 30%;
@@ -212,7 +246,7 @@ body {
     z-index: 2;
 }
 
-.Manija2{
+.Manija2 {
     position: absolute;
     width: 1%;
     right: 45.5%;
@@ -224,7 +258,7 @@ body {
     z-index: 1;
 }
 
-.Estuche3{
+.Estuche3 {
     position: relative;
     bottom: 4%;
     right: 30%;
@@ -236,7 +270,7 @@ body {
     z-index: 2;
 }
 
-.Estuche4{
+.Estuche4 {
     position: relative;
     top: 15%;
     right: 30%;

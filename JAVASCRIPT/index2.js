@@ -22,26 +22,31 @@ let intervaloCompleto
 let estadoLuzRojaI, estadoLuzVerdeI, estadoLuzAmarillaI, estadoLuzRojaD, estadoLuzVerdeD, estadoLuzAmarillaD
 let timeOutCambio
 let esperaCambio = false
+let estadoCambio = estadoAutomatico = estadoIntermitente = false
 
 
 botonEncendido.addEventListener("click", () => {
-       encendido = !encendido;
+    encendido = !encendido;
 
     if (encendido) {
-        botonEncendido.classList.replace("off","on");
+        botonEncendido.classList.replace("off", "on");
         estadoLuzRojaI = estadoLuzVerdeD = true
         estadoLuzAmarillaD = estadoLuzAmarillaI = estadoLuzRojaD = estadoLuzVerdeI = false
         estadoLuces()
+        estadoCambio = estadoAutomatico = estadoIntermitente = true
+        habilitaColores()
     }
     else {
         cambio = intermitente = automatico = false
         clearInterval(intervaloCompleto)
         clearInterval(intervaloIntermitente)
         luzAmarilla.textContent = luzAmarilla1.textContent = ""
-        botonEncendido.classList.replace("on","off");
+        botonEncendido.classList.replace("on", "off");
         estadoLuzAmarillaD = estadoLuzAmarillaI = estadoLuzRojaD = estadoLuzRojaI = estadoLuzVerdeD = estadoLuzVerdeI = false
         estadoLuces()
         clearTimeout(timeOutCambio)
+        estadoCambio = estadoAutomatico = estadoIntermitente = false
+        habilitaColores()
     }
 })
 
@@ -52,6 +57,8 @@ botonCambio.addEventListener("click", () => {
     esperaCambio = true
     cambio = !cambio
     cambioSemaforo()
+    estadoAutomatico = false
+        habilitaColores()
 })
 
 botonIntermitente.addEventListener("click", () => {
@@ -67,6 +74,9 @@ botonIntermitente.addEventListener("click", () => {
 
 
     cambio = false
+    esperaCambio = false
+    estadoAutomatico = true
+    habilitaColores()
     clearTimeout(timeOutCambio)
     if (!intermitente) {
         estadoLuzRojaI = estadoLuzRojaD = estadoLuzVerdeI = estadoLuzVerdeD = false
@@ -79,6 +89,8 @@ botonIntermitente.addEventListener("click", () => {
             estadoLuces()
         }, 1000);
         intermitente = true
+        estadoCambio = false
+        habilitaColores()
     }
     else {
         intermitente = false
@@ -86,6 +98,8 @@ botonIntermitente.addEventListener("click", () => {
         estadoLuzRojaI = estadoLuzVerdeD = true
         estadoLuces()
         clearInterval(intervaloIntermitente)
+        estadoCambio = true
+        habilitaColores()
     }
 })
 
@@ -109,15 +123,19 @@ botonAutomatico.addEventListener("click", () => {
         automatico = true
         cambioLed()
         cuentaRegresiva()
+        estadoCambio = false
+        habilitaColores()
     }
     else {
         automatico = false
         cambio = false
         clearInterval(intervaloCompleto)
-        luzAmarilla.textContent =  luzAmarilla1.textContent = ""
+        luzAmarilla.textContent = luzAmarilla1.textContent = ""
         estadoLuzAmarillaD = estadoLuzAmarillaI = estadoLuzRojaD = estadoLuzVerdeI = false
         estadoLuzRojaI = estadoLuzVerdeD = true
         estadoLuces()
+        estadoCambio = true
+        habilitaColores()
     }
 })
 
@@ -125,16 +143,16 @@ botonAutomatico.addEventListener("click", () => {
 function cuentaRegresiva() {
 
     let tiempo = 10
-    luzAmarilla.textContent =  luzAmarilla1.textContent = tiempo
-   
+    luzAmarilla.textContent = luzAmarilla1.textContent = tiempo
+
     intervaloCompleto = setInterval(() => {
         tiempo--
 
         if (tiempo > 0) {
-            luzAmarilla.textContent =  luzAmarilla1.textContent = tiempo
+            luzAmarilla.textContent = luzAmarilla1.textContent = tiempo
         }
         else {
-            luzAmarilla.textContent =  luzAmarilla1.textContent = ""
+            luzAmarilla.textContent = luzAmarilla1.textContent = ""
             clearInterval(intervaloCompleto)
             cambio = !cambio
             cambioSemaforo()
@@ -147,11 +165,13 @@ function cambioSemaforo() {
     estadoLuzAmarillaD = estadoLuzAmarillaI = true
     estadoLuces()
     if (cambio) {
-      timeOutCambio = setTimeout(function () {
+        timeOutCambio = setTimeout(function () {
             estadoLuzRojaD = estadoLuzVerdeI = true
             estadoLuzAmarillaD = estadoLuzAmarillaI = estadoLuzVerdeD = estadoLuzRojaI = false
             estadoLuces()
             esperaCambio = false
+            estadoAutomatico = true
+            habilitaColores()
 
             if (automatico) {
                 cuentaRegresiva()
@@ -160,11 +180,13 @@ function cambioSemaforo() {
         }, 3000);
     }
     else {
-      timeOutCambio = setTimeout(function () {
+        timeOutCambio = setTimeout(function () {
             estadoLuzRojaI = estadoLuzVerdeD = true
             estadoLuzAmarillaD = estadoLuzAmarillaI = estadoLuzRojaD = estadoLuzVerdeI = false
             estadoLuces()
             esperaCambio = false
+            estadoAutomatico = true
+            habilitaColores()
 
             if (automatico) {
                 cuentaRegresiva()
@@ -222,5 +244,26 @@ function estadoLuces() {
             break;
         default: luzAmarilla1.classList.remove("luzAmarilla");
             break;
+    }
+}
+
+function habilitaColores() {
+    switch (estadoCambio) {
+        case true: botonCambio.classList.replace("botonCambioDes", "botonCambioHab")
+            break;
+        default: botonCambio.classList.replace("botonCambioHab", "botonCambioDes")
+        break;
+    }
+    switch (estadoAutomatico) {
+        case true: botonAutomatico.classList.replace("botonAutoDes", "botonAutoHab")
+            break;
+        default: botonAutomatico.classList.replace("botonAutoHab", "botonAutoDes")
+        break;
+    }
+    switch (estadoIntermitente) {
+        case true: botonIntermitente.classList.replace("botonInterDes", "botonInterHab")
+            break;
+        default: botonIntermitente.classList.replace("botonInterHab", "botonInterDes")
+        break;
     }
 }
